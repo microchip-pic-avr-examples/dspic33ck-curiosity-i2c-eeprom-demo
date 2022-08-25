@@ -23,15 +23,14 @@
 #include "mcc_generated_files/uart/uart1.h"
 #include "mcc_generated_files/system/clock.h"
 
-//EEPROM Specific definitions
+//EEPROM config
 #define CLIENT_NODE_ADDRESS 0x50U
 #define BLOCK_ADDRESS 0x1U // 0 - 3 for 24C08 and 0 - 7 for 24C016
 #define ADDRESS_SIZE 1U
 #define PAGE_SIZE 16U
 #define BLOCK_SIZE 256U
 
-
-//EEPROM Macros
+//EEPROM macros
 #define CLIENT_BLOCK_ADDRESS (CLIENT_NODE_ADDRESS | ((BLOCK_ADDRESS)<<1))
 #define MAX_PAGES ((BLOCK_SIZE)/(PAGE_SIZE))
 
@@ -52,9 +51,7 @@ static void PrintFeaturesMessage(void);
 static void resetErrorStatus();
 static bool ErrorHandler(void);
 
-/*
-    Main application
-*/
+//Status flags
 bool i2cHostErrorNoneFlag = false;
 bool i2cHostNackFlag = false;
 bool i2cHostBusCollisionFlag = false;
@@ -70,9 +67,9 @@ int main(void)
     I2C_Host.Initialize();
     I2C_Host.HostCallbackRegister(&I2C_Callback);
     
+    //Print demo information
     PrintWelcomeMessage();
     PrintFeaturesMessage();
-    
     printf("* Type the characters that has to be stored in EEPROM\r\n");
     printf("* Press enter key once to jump to next page and press it twice to exit recording\r\n\r\n");
     
@@ -91,9 +88,6 @@ int main(void)
     }
 
     numPagesWritten = i;
-
-
-    
     printf("\r\n\r\n");
     
     // Read page from EEPROM
