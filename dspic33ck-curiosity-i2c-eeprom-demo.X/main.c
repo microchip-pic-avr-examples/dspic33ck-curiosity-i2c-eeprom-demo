@@ -67,7 +67,7 @@ int main(void)
     while(pageOffset < EEPROM_MAX_PAGES)
     {
         eepromAddress = pageOffset*EEPROM_PAGE_SIZE;
-        if(EEPROM_PageWrite(writeData) != EEPROM_WRITE_SUCCESS)
+        if(EEPROM_PageWrite(&writeData[pageOffset]) != EEPROM_WRITE_SUCCESS)
         {
             break;
         }

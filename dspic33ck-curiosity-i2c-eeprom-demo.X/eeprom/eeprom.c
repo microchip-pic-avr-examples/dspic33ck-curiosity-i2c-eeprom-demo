@@ -66,7 +66,7 @@ enum EEPROM_WRITE_STATUS EEPROM_PageWrite(union EEPROM_WRITE_BUFFER *writeBuffer
     }
 #endif    
     //Write page to EEPROM
-    if(I2C_Host.Write(EEPROM_CLIENT_BLOCK_ADDRESS, (uint8_t*)writeBuffer, EEPROM_ADDRESS_SIZE + EEPROM_BLOCK_SIZE) == false)
+    if(I2C_Host.Write(EEPROM_CLIENT_BLOCK_ADDRESS, (uint8_t*)writeBuffer, (EEPROM_ADDRESS_SIZE + EEPROM_PAGE_SIZE)) == false)
     {
         writeStatus = EEPROM_WRITE_FAIL;
     }
@@ -87,7 +87,7 @@ enum EEPROM_WRITE_STATUS EEPROM_PageWrite(union EEPROM_WRITE_BUFFER *writeBuffer
 
 enum EEPROM_READ_STATUS EEPROM_ReadPages(uint8_t address, uint8_t *readBuffer, uint8_t numPages)
 {
-    uint8_t *eepromAddress = 0;
+    uint8_t eepromAddress;
     uint8_t *readBufferOffset;
     
     //for iteration purposes
@@ -97,10 +97,10 @@ enum EEPROM_READ_STATUS EEPROM_ReadPages(uint8_t address, uint8_t *readBuffer, u
     enum EEPROM_READ_STATUS readStatus = EEPROM_READ_SUCCESS;
     for(pageOffset=0;pageOffset<numPages;pageOffset++)
     {
-        *eepromAddress = address + (EEPROM_PAGE_SIZE * pageOffset);
+        eepromAddress = address + (EEPROM_PAGE_SIZE * pageOffset);
         readBufferOffset = readBuffer + (EEPROM_PAGE_SIZE * pageOffset);
         //Read page from EEPROM
-        if(I2C_Host.WriteRead(EEPROM_CLIENT_BLOCK_ADDRESS, eepromAddress, EEPROM_ADDRESS_SIZE, readBufferOffset, EEPROM_PAGE_SIZE) == false)
+        if(I2C_Host.WriteRead(EEPROM_CLIENT_BLOCK_ADDRESS, &eepromAddress, EEPROM_ADDRESS_SIZE, readBufferOffset, EEPROM_PAGE_SIZE) == false)
         {
 #if EEPROM_DEBUG_MODE == 1U
             printf("\r\n***ERROR READING EEPROM***\r\n");
@@ -110,11 +110,11 @@ enum EEPROM_READ_STATUS EEPROM_ReadPages(uint8_t address, uint8_t *readBuffer, u
         }
 
 #if EEPROM_DEBUG_MODE == 1U        
-        printf("* Address: 0x%x\tData: ",*eepromAddress);
+        printf("* Address: 0x%x\tData: ",eepromAddress);
         
         for(addressOffset=0;addressOffset<EEPROM_PAGE_SIZE;addressOffset++)
         {
-             printf("0x%x ", readBuffer[pageOffset + addressOffset]);
+             printf("0x%x ", readBufferOffset[addressOffset]);
 
         }
         printf("\r\n");
