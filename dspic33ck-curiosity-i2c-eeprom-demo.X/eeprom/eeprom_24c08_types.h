@@ -19,15 +19,15 @@
     THIS SOFTWARE.
 */
 
-#ifndef EEPROM_TYPES_H
-#define	EEPROM_TYPES_H
+#ifndef EEPROM_24C08_TYPES_H
+#define	EEPROM_24C08_TYPES_H
 
-#include "eeprom_config.h"
-
+#include "eeprom_24c08_config.h"
 
 /**
- @enum     EEPROM_WRITE_STATUS
- @brief    This enum can be used to know the EEPROM Write Status. 
+ * @ingroup     eeprom_24c08
+ * @enum        EEPROM_WRITE_STATUS
+ * @brief       This enum can be used to know the EEPROM Write Status. 
 */
 enum EEPROM_WRITE_STATUS
 {
@@ -37,8 +37,9 @@ enum EEPROM_WRITE_STATUS
 };
 
 /**
- @enum     EEPROM_WRITE_STATUS
- @brief    This enum can be used to know the EEPROM read Status. 
+ * @ingroup     eeprom_24c08
+ * @enum        EEPROM_WRITE_STATUS
+ * @brief       This enum can be used to know the EEPROM read Status. 
 */
 enum EEPROM_READ_STATUS
 {
@@ -48,8 +49,9 @@ enum EEPROM_READ_STATUS
 };
 
 /**
- @enum     EEPROM_WRITE_BUFFER
- @brief    This enum can be used to know the EEPROM read Status. 
+ * @ingroup     eeprom_24c08
+ * @enum        EEPROM_WRITE_BUFFER
+ * @brief       This union can be used to load the page data that has to be written to EEPROM 
 */
 union EEPROM_WRITE_BUFFER{
     uint8_t startAddressAndData[EEPROM_ADDRESS_SIZE + EEPROM_PAGE_SIZE];
@@ -60,5 +62,5 @@ union EEPROM_WRITE_BUFFER{
     }eepromPage;
 };
 
-#endif	/* EEPROM_TYPES_H */
+#endif	/* EEPROM_24C08_TYPES_H */
 

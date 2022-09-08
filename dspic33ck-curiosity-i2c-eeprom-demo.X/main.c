@@ -21,10 +21,11 @@
 #include "mcc_generated_files/system/system.h"
 
 #include <stdio.h>
-#include "eeprom/eeprom.h"
-#include "eeprom/eeprom_config.h"
-#include "eeprom/eeprom_types.h"
+#include "eeprom/eeprom_24c08.h"
+#include "eeprom/eeprom_24c08_config.h"
+#include "eeprom/eeprom_24c08_types.h"
 
+//Sample data of 256 bytes to write into EEPROM
 union EEPROM_WRITE_BUFFER writeData[] = {
     //PageAddress         :Data
     {{0x00,               0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F}},
@@ -45,12 +46,15 @@ union EEPROM_WRITE_BUFFER writeData[] = {
     {{0xF0,               0xF0, 0xF1, 0xF2, 0xF3, 0xF4, 0xF5, 0xF6, 0xF7, 0xF8, 0xF9, 0xFA, 0xFB, 0xFC, 0xFD, 0xFE, 0xFF}}
                       };
 
+//read buffer details to store data read from block
+const uint8_t readStartAddress = 0x0;
 uint8_t readData[EEPROM_BLOCK_SIZE] = {};
 
+//demo specific function declaration
 static void PrintWelcomeMessage(void);
 
 int main(void)
-{
+{   
     uint8_t pageOffset = 0; 
     uint8_t eepromAddress = 0;
     uint8_t numPagesWritten;
@@ -82,15 +86,13 @@ int main(void)
     if(numPagesWritten != 0)
     {
         printf("Reading the stored data from EEPROM\r\n\r\n");
-        EEPROM_ReadPages(0x0, readData, numPagesWritten);
+        EEPROM_MultiPageRead(readStartAddress, readData, numPagesWritten);
     }
     
     while(1)
     {
     }    
 }
-
-
 
 static void PrintWelcomeMessage(void)
 {
@@ -100,7 +102,7 @@ static void PrintWelcomeMessage(void)
                             "*******************************************************\r\n";
     char *featureMessage =  "DEMO KEY FEATURES:\r\n"
                             "1. I2C communication using dsPIC33CK256MP508\r\n"
-                            "2. 16 byte page write to I2C EEPROM and page read of same data\r\n"
+                            "2. 16 byte page write to I2C EEPROM - 24C08 and page read of same data\r\n"
                             "3. Sample data of 256 bytes (block size of 24C08) considered for this example\r\n\r\n";
     printf("%s",demoTitle);
     printf("%s",featureMessage);

@@ -1,3 +1,11 @@
+/**
+ * @file      eeprom_24c08.h
+ * 
+ * @ingroup   eeprom_24c08
+ * 
+ * @brief     This is the function header file for 24C08 EEPROM functions
+*/
+
 /*
 © [2022] Microchip Technology Inc. and its subsidiaries.
 
@@ -19,22 +27,46 @@
     THIS SOFTWARE.
 */
 
-#ifndef EEPROM_H
-#define	EEPROM_H
+#ifndef EEPROM_24C08_H
+#define	EEPROM_24C08_H
 
 #include <stdint.h>
-#include "eeprom_config.h"
-#include "eeprom_types.h"
-
+#include "eeprom_24c08_config.h"
+#include "eeprom_24c08_types.h"
 
 //EEPROM macros
 #define EEPROM_CLIENT_BLOCK_ADDRESS (EEPROM_NODE_ADDRESS | ((EEPROM_BLOCK_ADDRESS)<<1))
 #define EEPROM_MAX_PAGES ((EEPROM_BLOCK_SIZE)/(EEPROM_PAGE_SIZE))
 
-
+/**
+ * @ingroup     eeprom_24c08
+ * @brief       This function initializes the I2C Host for communicating with EEPROM 
+ * @param       none
+ * @return      none
+ */
 void EEPROM_Initialize(void);
-enum EEPROM_WRITE_STATUS EEPROM_PageWrite(union EEPROM_WRITE_BUFFER *writeBuffer);
-enum EEPROM_READ_STATUS EEPROM_ReadPages(uint8_t pageAddress, uint8_t *readBuffer, uint8_t numPages);
 
-#endif	/* EEPROM_H */
+/**
+ * @ingroup     eeprom_24c08
+ * @brief       This function writes the page data to EEPROM 
+ * @param[in]   writeBuffer - write buffer of size equal to \ref EEPROM_PAGE_SIZE + \ref EEPROM_ADDRESS_SIZE
+ * @return      EEPROM_WRITE_SUCCESS - No Error 
+ * @return      EEPROM_WRITE_FAIL - EEPROM address write failed 
+ * @return      EEPROM_WRITE_CONNECTION_FAIL - Failed to connect EEPROM 
+ */
+enum EEPROM_WRITE_STATUS EEPROM_PageWrite(union EEPROM_WRITE_BUFFER *writeBuffer);
+
+/**
+ * @ingroup     eeprom_24c08
+ * @brief       This function reads multiple page from EEPROM 
+ * @param[in]   startAddress - start address of the EEPROM memory 
+ * @param[out]  readBuffer - pointer to read buffer of size \ref numPages * \ref EEPROM_PAGE_SIZE
+ * @param[in]   numPages - number of pages to be read
+ * @return      EEPROM_READ_SUCCESS - No Error
+ * @return      EEPROM_READ_FAIL - Failed to connect EEPROM
+ * @return      EEPROM_READ_CONNECTION_FAIL - Failed to connect EEPROM
+ */
+enum EEPROM_READ_STATUS EEPROM_MultiPageRead(uint8_t startAddress, uint8_t *readBuffer, uint8_t numPages);
+
+#endif	/* EEPROM_24C08_H */
 

@@ -30,9 +30,9 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-#include "eeprom.h"
-#include "eeprom_config.h"
-#include "eeprom_types.h"
+#include "eeprom_24c08.h"
+#include "eeprom_24c08_config.h"
+#include "eeprom_24c08_types.h"
 
 
 //Status flags
@@ -85,7 +85,7 @@ enum EEPROM_WRITE_STATUS EEPROM_PageWrite(union EEPROM_WRITE_BUFFER *writeBuffer
     return writeStatus;
 }
 
-enum EEPROM_READ_STATUS EEPROM_ReadPages(uint8_t address, uint8_t *readBuffer, uint8_t numPages)
+enum EEPROM_READ_STATUS EEPROM_MultiPageRead(uint8_t address, uint8_t *readBuffer, uint8_t numPages)
 {
     uint8_t eepromAddress;
     uint8_t *readBufferOffset;

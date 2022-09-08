@@ -1,3 +1,11 @@
+/**
+ * @file      eeprom_24c08_config.h
+ * 
+ * @defgroup  eeprom_24c08
+ * 
+ * @brief     This is the configuration file for 24C08 EEPROM
+*/
+
 /*
 © [2022] Microchip Technology Inc. and its subsidiaries.
 
@@ -19,16 +27,16 @@
     THIS SOFTWARE.
 */
  
-#ifndef EEPROM_CONFIG_H
-#define	EEPROM_CONFIG_H
+#ifndef EEPROM_24C08_CONFIG_H
+#define	EEPROM_24C08_CONFIG_H
 
-//EEPROM config
-#define EEPROM_NODE_ADDRESS 0x50U
-#define EEPROM_BLOCK_ADDRESS 0x1U // 0 - 3 for 24C08 and 0 - 7 for 24C016
-#define EEPROM_ADDRESS_SIZE 1U
-#define EEPROM_PAGE_SIZE 16U
-#define EEPROM_BLOCK_SIZE 256U
-#define EEPROM_DEBUG_MODE 1U // 1U : to enable printing debug messages 
+//24C08 EEPROM config
+#define EEPROM_NODE_ADDRESS     0x50U
+#define EEPROM_BLOCK_ADDRESS    0x1U // 0 - 3 for 24C08 and 0 - 7 for 24C016
+#define EEPROM_ADDRESS_SIZE     1U
+#define EEPROM_PAGE_SIZE        16U
+#define EEPROM_BLOCK_SIZE       256U
+#define EEPROM_DEBUG_MODE       1U // 1U : to enable printing debug messages 
 
-#endif	/* EEPROM_CONFIG_H */
+#endif	/* EEPROM_24C08_CONFIG_H */
 
