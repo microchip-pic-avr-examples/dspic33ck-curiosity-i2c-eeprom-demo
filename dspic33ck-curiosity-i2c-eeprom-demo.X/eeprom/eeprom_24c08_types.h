@@ -1,3 +1,11 @@
+/**
+ * @file      eeprom_24c08_types.h
+ * 
+ * @ingroup   eeprom_24c08
+ * 
+ * @brief     This is the data type definition file for 24C08 EEPROM
+*/
+
 /*
 © [2022] Microchip Technology Inc. and its subsidiaries.
 
