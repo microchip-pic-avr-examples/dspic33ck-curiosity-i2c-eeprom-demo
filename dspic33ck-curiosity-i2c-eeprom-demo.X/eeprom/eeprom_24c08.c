@@ -46,7 +46,6 @@ static void I2C_BusErrorCrear(void);
 
 void EEPROM_Initialize(void)
 {
-    I2C_Host.Initialize();
     I2C_Host.HostCallbackRegister(&I2C_BusErrorCallback);
 }
 
