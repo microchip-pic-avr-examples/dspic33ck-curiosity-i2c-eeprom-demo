@@ -54,7 +54,7 @@ void EEPROM_Initialize(void);
  * @return      EEPROM_WRITE_FAIL - EEPROM address write failed 
  * @return      EEPROM_WRITE_CONNECTION_FAIL - Failed to connect EEPROM 
  */
-enum EEPROM_WRITE_STATUS EEPROM_PageWrite(union EEPROM_WRITE_BUFFER *writeBuffer);
+enum EEPROM_WRITE_STATUS EEPROM_PageWrite(struct EEPROM_WRITE_BUFFER *writeBuffer);
 
 /**
  * @ingroup     eeprom_24c08

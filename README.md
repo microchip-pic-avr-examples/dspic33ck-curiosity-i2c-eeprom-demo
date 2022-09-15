@@ -6,7 +6,7 @@
 
 ## Summary
 
-This project demonstrates the I2C communication on dsPIC33CK Curiosity board using MCC- Melody driver code. Demo code will write predefined 256 bytes of message to EEPROM and reads back the written message. This example uses 24C08 based I2C EEPROM click board with block size of 256 bytes and each page consists 16 bytes. In case the EEPROM of varying page size or block size is used then, `EEPROM config` section in main.c can be modified accordingly.
+This project demonstrates the I2C communication on dsPIC33CK Curiosity board using MCC- Melody driver code. Demo code will write predefined 256 bytes of message to EEPROM and reads back the written message. This example uses 24C08 based I2C EEPROM click board with block size of 256 bytes and each page consists 16 bytes.
 
 ## Related Documentation
 

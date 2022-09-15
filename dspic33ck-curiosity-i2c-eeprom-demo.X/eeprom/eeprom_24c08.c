@@ -49,18 +49,18 @@ void EEPROM_Initialize(void)
     I2C_Host.HostCallbackRegister(&I2C_BusErrorCallback);
 }
 
-enum EEPROM_WRITE_STATUS EEPROM_PageWrite(union EEPROM_WRITE_BUFFER *writeBuffer)
+enum EEPROM_WRITE_STATUS EEPROM_PageWrite(struct EEPROM_WRITE_BUFFER *writeBuffer)
 { 
     enum EEPROM_WRITE_STATUS writeStatus = EEPROM_WRITE_SUCCESS;
     
 #if EEPROM_DEBUG_MODE == 1U
     uint8_t addressOffset = 0;
     
-    printf("* Address: 0x%x\tData: ",writeBuffer->eepromPage.startAddress[0]);
+    printf("* Address: 0x%x\tData: ",writeBuffer->startAddress[0]);
     
     while(addressOffset < EEPROM_PAGE_SIZE)
     {
-        printf("0x%x ", writeBuffer->eepromPage.data[addressOffset]);
+        printf("0x%x ", writeBuffer->data[addressOffset]);
         addressOffset++;
     }
 #endif    

@@ -61,13 +61,9 @@ enum EEPROM_READ_STATUS
  * @enum        EEPROM_WRITE_BUFFER
  * @brief       This union can be used to load the page data that has to be written to EEPROM 
 */
-union EEPROM_WRITE_BUFFER{
-    uint8_t startAddressAndData[EEPROM_ADDRESS_SIZE + EEPROM_PAGE_SIZE];
-    struct 
-    {
-        uint8_t startAddress[EEPROM_ADDRESS_SIZE];
-        uint8_t data[EEPROM_PAGE_SIZE];
-    }eepromPage;
+struct EEPROM_WRITE_BUFFER{
+    uint8_t startAddress[EEPROM_ADDRESS_SIZE];
+    uint8_t data[EEPROM_PAGE_SIZE];
 };
 
 #endif	/* EEPROM_24C08_TYPES_H */
