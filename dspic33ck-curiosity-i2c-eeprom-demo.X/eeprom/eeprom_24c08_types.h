@@ -37,7 +37,7 @@
  * @enum        EEPROM_WRITE_STATUS
  * @brief       This enum can be used to know the EEPROM Write Status. 
 */
-enum EEPROM_WRITE_STATUS
+enum I2C_EEPROM_WRITE_STATUS
 {
     EEPROM_WRITE_SUCCESS,              /**< No Error */
     EEPROM_WRITE_FAIL,                 /**< EEPROM address write failed */
@@ -49,7 +49,7 @@ enum EEPROM_WRITE_STATUS
  * @enum        EEPROM_WRITE_STATUS
  * @brief       This enum can be used to know the EEPROM read Status. 
 */
-enum EEPROM_READ_STATUS
+enum I2C_EEPROM_READ_STATUS
 {
     EEPROM_READ_SUCCESS,              /**< No Error */
     EEPROM_READ_FAIL,                 /**< Failed to connect EEPROM */
@@ -61,7 +61,7 @@ enum EEPROM_READ_STATUS
  * @enum        EEPROM_WRITE_BUFFER
  * @brief       This union can be used to load the page data that has to be written to EEPROM 
 */
-struct EEPROM_WRITE_BUFFER{
+struct I2C_EEPROM_WRITE_BUFFER{
     uint8_t startAddress[EEPROM_ADDRESS_SIZE];
     uint8_t data[EEPROM_PAGE_SIZE];
 };

@@ -44,14 +44,14 @@ void I2C_BusErrorCallback(void);
 static bool EEPROM_ErrorHandler(void);
 static void I2C_BusErrorCrear(void);
 
-void EEPROM_Initialize(void)
+void I2C_EEPROM_Initialize(void)
 {
     I2C_Host.HostCallbackRegister(&I2C_BusErrorCallback);
 }
 
-enum EEPROM_WRITE_STATUS EEPROM_PageWrite(struct EEPROM_WRITE_BUFFER *writeBuffer)
+enum I2C_EEPROM_WRITE_STATUS I2C_EEPROM_PageWrite(struct I2C_EEPROM_WRITE_BUFFER *writeBuffer)
 { 
-    enum EEPROM_WRITE_STATUS writeStatus = EEPROM_WRITE_SUCCESS;
+    enum I2C_EEPROM_WRITE_STATUS writeStatus = EEPROM_WRITE_SUCCESS;
     
 #if EEPROM_DEBUG_MODE == 1U
     uint8_t addressOffset = 0;
@@ -84,7 +84,7 @@ enum EEPROM_WRITE_STATUS EEPROM_PageWrite(struct EEPROM_WRITE_BUFFER *writeBuffe
     return writeStatus;
 }
 
-enum EEPROM_READ_STATUS EEPROM_MultiPageRead(uint8_t address, uint8_t *readBuffer, uint8_t numPages)
+enum I2C_EEPROM_READ_STATUS I2C_EEPROM_MultiPageRead(uint8_t address, uint8_t *readBuffer, uint8_t numPages)
 {
     uint8_t eepromAddress;
     uint8_t *readBufferOffset;
@@ -93,7 +93,7 @@ enum EEPROM_READ_STATUS EEPROM_MultiPageRead(uint8_t address, uint8_t *readBuffe
     uint8_t pageOffset;
     uint8_t addressOffset;
     
-    enum EEPROM_READ_STATUS readStatus = EEPROM_READ_SUCCESS;
+    enum I2C_EEPROM_READ_STATUS readStatus = EEPROM_READ_SUCCESS;
     for(pageOffset=0;pageOffset<numPages;pageOffset++)
     {
         eepromAddress = address + (EEPROM_PAGE_SIZE * pageOffset);

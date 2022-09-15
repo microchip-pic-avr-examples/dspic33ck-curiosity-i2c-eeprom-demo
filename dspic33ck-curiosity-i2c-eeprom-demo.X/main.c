@@ -26,7 +26,7 @@
 #include "eeprom/eeprom_24c08_types.h"
 
 //Sample data of 256 bytes to write into EEPROM
-const struct EEPROM_WRITE_BUFFER writeData[] = {
+const struct I2C_EEPROM_WRITE_BUFFER writeData[] = {
     //PageAddress         :Data
     {{0x00},               {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F}},
     {{0x10},               {0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F}},
@@ -60,7 +60,7 @@ int main(void)
     uint8_t numPagesWritten;
     
     SYSTEM_Initialize();
-    EEPROM_Initialize();
+    I2C_EEPROM_Initialize();
     
     //Print demo information
     PrintWelcomeMessage();
@@ -71,7 +71,7 @@ int main(void)
     while(pageOffset < EEPROM_MAX_PAGES)
     {
         eepromAddress = pageOffset*EEPROM_PAGE_SIZE;
-        if(EEPROM_PageWrite((struct EEPROM_WRITE_BUFFER*)&writeData[pageOffset]) != EEPROM_WRITE_SUCCESS)
+        if(I2C_EEPROM_PageWrite((struct I2C_EEPROM_WRITE_BUFFER*)&writeData[pageOffset]) != EEPROM_WRITE_SUCCESS)
         {
             break;
         }
@@ -86,7 +86,7 @@ int main(void)
     if(numPagesWritten != 0)
     {
         printf("* Reading the stored data from EEPROM\r\n\r\n");
-        EEPROM_MultiPageRead(readStartAddress, readData, numPagesWritten);
+        I2C_EEPROM_MultiPageRead(readStartAddress, readData, numPagesWritten);
     }
     
     while(1)

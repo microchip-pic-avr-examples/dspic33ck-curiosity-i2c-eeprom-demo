@@ -44,7 +44,7 @@
  * @param       none
  * @return      none
  */
-void EEPROM_Initialize(void);
+void I2C_EEPROM_Initialize(void);
 
 /**
  * @ingroup     eeprom_24c08
@@ -54,19 +54,19 @@ void EEPROM_Initialize(void);
  * @return      EEPROM_WRITE_FAIL - EEPROM address write failed 
  * @return      EEPROM_WRITE_CONNECTION_FAIL - Failed to connect EEPROM 
  */
-enum EEPROM_WRITE_STATUS EEPROM_PageWrite(struct EEPROM_WRITE_BUFFER *writeBuffer);
+enum I2C_EEPROM_WRITE_STATUS I2C_EEPROM_PageWrite(struct I2C_EEPROM_WRITE_BUFFER *writeBuffer);
 
 /**
  * @ingroup     eeprom_24c08
  * @brief       This function reads multiple page from EEPROM 
  * @param[in]   startAddress - start address of the EEPROM memory 
- * @param[out]  readBuffer - pointer to read buffer of size \ref numPages * \ref EEPROM_PAGE_SIZE
+ * @param[out]  readBuffer - pointer to read buffer of size \ref numPages times \ref EEPROM_PAGE_SIZE
  * @param[in]   numPages - number of pages to be read
  * @return      EEPROM_READ_SUCCESS - No Error
  * @return      EEPROM_READ_FAIL - Failed to connect EEPROM
  * @return      EEPROM_READ_CONNECTION_FAIL - Failed to connect EEPROM
  */
-enum EEPROM_READ_STATUS EEPROM_MultiPageRead(uint8_t startAddress, uint8_t *readBuffer, uint8_t numPages);
+enum I2C_EEPROM_READ_STATUS I2C_EEPROM_MultiPageRead(uint8_t startAddress, uint8_t *readBuffer, uint8_t numPages);
 
 #endif	/* EEPROM_24C08_H */
 
