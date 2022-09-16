@@ -39,7 +39,8 @@ This project demonstrates the I2C communication on dsPIC33CK Curiosity board usi
 
 ## Operation
 
-- Demo code writes predefined 256 bytes of charecter in EEPROM which is 1 block size of 24C08 and reads back the same data.
+- Run Tera Term or any serial terminal and set the baud-rate to 9600, data bits as 8, stop bits as 1, parity to none and flow control to none
+- Demo code writes predefined 256 bytes of character in EEPROM which is 1 block size of 24C08 and reads back the same data.
 - The write data can be changed by modifying `clientWriteData` in main.c
 
 ## MCC settings for reference
