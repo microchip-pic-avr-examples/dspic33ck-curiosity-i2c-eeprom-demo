@@ -42,7 +42,7 @@ static bool i2cHostBusCollisionFlag = false;
 
 void I2C_BusErrorCallback(void);
 static bool EEPROM_ErrorHandler(void);
-static void I2C_BusErrorCrear(void);
+static void I2C_BusErrorClear(void);
 
 void I2C_EEPROM_Initialize(void)
 {
@@ -136,7 +136,7 @@ static bool EEPROM_ErrorHandler(void)
 {
     if((i2cHostErrorNoneFlag != true) && (i2cHostNackFlag == false) && (i2cHostBusCollisionFlag == false))
     {
-        I2C_BusErrorCrear();
+        I2C_BusErrorClear();
         return true;
     }
     
@@ -161,7 +161,7 @@ void I2C_BusErrorCallback(void)
     }
 }
 
-static void I2C_BusErrorCrear(void)
+static void I2C_BusErrorClear(void)
 {
     i2cHostErrorNoneFlag = false;
     i2cHostNackFlag = false;
