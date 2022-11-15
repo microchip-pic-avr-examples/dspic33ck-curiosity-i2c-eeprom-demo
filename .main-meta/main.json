@@ -4,7 +4,7 @@
    "content":{
       "metaDataVersion":"1.3.0",
       "name":"com.microchip.mplabx.project.dspic33ck-curiosity-i2c-eeprom-demo",
-      "version":"1.0.0",
+      "version":"1.0.1",
       "displayName":"dsPIC33CK Curiosity Development Board - I2C Demo",
       "projectName":"dspic33ck-curiosity-i2c-eeprom-demo",
       "shortDescription":"This is I2C-Host demo for dsPIC33CK Curiosity board",
