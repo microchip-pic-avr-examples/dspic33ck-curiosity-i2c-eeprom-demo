@@ -1,3 +1,9 @@
+# dspic33ck-curiosity-i2c-eeprom-demo v1.0.1
+
+### Release Highlights
+
+- Versions upgraded to latest public release :: MCC Melody Core - 2.3.1
+
 # dspic33ck-curiosity-i2c-eeprom-demo v1.0.0
 
 ### Release Highlights
